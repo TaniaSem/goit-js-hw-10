@@ -18,6 +18,10 @@ function onSearch(e) {
   e.preventDefault();
   const name = e.target.value.trim();
   onClean();
+  if (name === '') {
+    onClean();
+    return;
+  }
 
   fetchCountries(name)
     .then(country => {
@@ -33,9 +37,6 @@ function onSearch(e) {
         Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );
-      } else if (name === '') {
-        onClean();
-        Notify.failure('Oops, there is no country with that name');
       }
     })
     .catch(error => {
