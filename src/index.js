@@ -17,6 +17,7 @@ refs.input.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 function onSearch(e) {
   e.preventDefault();
   const name = e.target.value.trim();
+  onClean();
 
   fetchCountries(name)
     .then(country => {
